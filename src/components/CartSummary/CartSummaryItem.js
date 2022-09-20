@@ -74,6 +74,7 @@ const CartSummaryItem = ({ item, pointsObj, children }) => {
   const price = formatDollars(item.totalPrice)
   const mods = makeModifierNames(item)
   const hasPoints = item.points && pointsObj
+  const isRecurringItem = (item.frequency && item.frequency !== 'SINGLE')
 
   return (
     <CartSummaryItemView>
@@ -83,7 +84,7 @@ const CartSummaryItem = ({ item, pointsObj, children }) => {
       <CartSummaryItemContainer>
         <CartSummaryItemInfo>
           <CartSummaryItemContent>
-            <CartSummaryItemName as="p">{item.name}</CartSummaryItemName>
+            <CartSummaryItemName as="p">{item.name} {isRecurringItem?'- '+item.frequency:''}</CartSummaryItemName>
             {mods && <CartSummaryItemMods as="p">{mods}</CartSummaryItemMods>}
             {item.madeFor ? (
               <CartSummaryItemMadeFor as="p">
