@@ -6,6 +6,7 @@ import { BgImage, CartItemCount } from '..'
 import Body from '../Body'
 import Heading from '../Heading'
 import CartSummaryItemPoints from './CartSummaryItemPoints'
+import { getLongName } from '../utils'
 
 const CartSummaryItemView = styled.div`
   margin: 0 0 2rem;
@@ -75,6 +76,7 @@ const CartSummaryItem = ({ item, pointsObj, children }) => {
   const mods = makeModifierNames(item)
   const hasPoints = item.points && pointsObj
   const isRecurringItem = (item.frequency && item.frequency !== 'SINGLE')
+  const readableFrequency = getLongName(item.frequency)
 
   return (
     <CartSummaryItemView>
@@ -84,7 +86,7 @@ const CartSummaryItem = ({ item, pointsObj, children }) => {
       <CartSummaryItemContainer>
         <CartSummaryItemInfo>
           <CartSummaryItemContent>
-            <CartSummaryItemName as="p">{item.name} {isRecurringItem?'- '+item.frequency:''}</CartSummaryItemName>
+            <CartSummaryItemName as="p">{item.name} {isRecurringItem?'- '+readableFrequency:''}</CartSummaryItemName>
             {mods && <CartSummaryItemMods as="p">{mods}</CartSummaryItemMods>}
             {item.madeFor ? (
               <CartSummaryItemMadeFor as="p">

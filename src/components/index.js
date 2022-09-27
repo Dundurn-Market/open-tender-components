@@ -101,6 +101,8 @@ import {
 
 import { useCreditCard, useImage } from './hooks'
 
+import { getLongName, getShortName } from './utils'
+
 import { Recaptcha, useRecaptcha } from './recaptcha'
 
 export {
@@ -200,4 +202,6 @@ export {
   useRecaptcha,
   useCheckout,
   useCheckoutGuest,
+  getLongName,
+  getShortName
 }
